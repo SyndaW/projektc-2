@@ -19,7 +19,7 @@ class Program
         while (!isGameOver)
         {
             Console.Clear();
-            PrintBoard();
+            PrintBoard(); // tady voláme metodu PrintBoard
 
             Console.WriteLine($"\nHráč {currentPlayer}, zadej tlačítko pozice:");
             int Position = Convert.ToInt32(Console.ReadLine()) - 1;
@@ -34,21 +34,21 @@ class Program
             }
             else
             {
-                Console.WriteLine('Pozice je obsazená, zkuste to znovu!');
+                Console.WriteLine("Pozice je obsazená, zkuste to znovu!");
                 continue;
             }
 
             if (CheckWinner())
             {
                 Console.Clear();
-                PrintBoard();
+                PrintBoard(); // opět volání metody
                 Console.WriteLine($"\nHráč {currentPlayer} vyhrál!");
                 isGameOver = true;
             }
             else if (turns == 9)
             {
                 Console.Clear();
-                PrintBoard();
+                PrintBoard(); // znovu volání metody
                 Console.WriteLine("\nRemíza!");
                 isGameOver = true;
             }
@@ -59,6 +59,21 @@ class Program
         }
     }
 
+    // Metoda PrintBoard je definovaná zde
+    static void PrintBoard()
+    {
+        Console.WriteLine(" Piškvorky");
+        Console.WriteLine("-------------");
+        for (int i = 0; i < 3; i++)
+        {
+            Console.Write("| ");
+            for (int j = 0; j < 3; j++)
+            {
+                Console.Write(board[i, j] + " | ");
+            }
+            Console.WriteLine("\n-------------");
+        }
+    }
     static bool CheckWinner()
     {
         // Kontrola řádků
